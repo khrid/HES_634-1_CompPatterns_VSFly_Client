@@ -7,6 +7,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using VSFlyMVCClient.Models;
 
 namespace VSFlyMVCClient.Controllers
 {
@@ -22,7 +23,7 @@ namespace VSFlyMVCClient.Controllers
         }
         public async Task<ActionResult> IndexAsync()
         {
-            HttpResponseMessage response = await _httpClient.GetAsync("api/Flights");
+            HttpResponseMessage response = await _httpClient.GetAsync("api/Flights/FutureFlights");
             response.EnsureSuccessStatusCode();
             string message = await response.Content.ReadAsStringAsync();
 
@@ -32,7 +33,7 @@ namespace VSFlyMVCClient.Controllers
         }
 
         // GET: FlightsController/Details/5
-        public ActionResult Details(int id)
+        public ActionResult Details(Flight flight)
         {
             return View();
         }

@@ -43,9 +43,9 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                @Html.ActionLink("Book this flight!", "Confirm", "Bookings", new { id=item.FlightNo }) |
+                @Html.ActionLink("Info", "Info", new { id = item.FlightNo })
+                <!-- @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })-->
             </td>
         </tr>
 }
