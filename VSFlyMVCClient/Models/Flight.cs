@@ -13,7 +13,7 @@ namespace VSFlyMVCClient.Models
 
         public string Destination { get; set; }
         public DateTime Date { get; set; }
-        public double FinalPrice { get; set; }
+        public double BasePrice { get; set; }
         public short? Seats { get; set; }
     }
 }

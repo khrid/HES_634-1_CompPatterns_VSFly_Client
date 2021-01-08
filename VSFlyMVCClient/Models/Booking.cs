@@ -9,5 +9,6 @@ namespace VSFlyMVCClient.Models
     {
         public int FlightNo { get; set; }
         public int PassengerID { get; set; }
+        public double SalePrice { get; set; }
     }
 }

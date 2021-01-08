@@ -6,13 +6,16 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
+using VSFlyMVCClient.Models;
 
 namespace VSFlyMVCClient.Controllers
 {
     public class BookingsController : Controller
     {
         private static HttpClient _httpClient;
+        
         static BookingsController()
         {
             _httpClient = new HttpClient();
@@ -21,7 +24,7 @@ namespace VSFlyMVCClient.Controllers
         // GET: BookingsController
         public ActionResult Index()
         {
-            return View();
+            return View("Index");
         }
 
         // GET: BookingsController/Details/5
@@ -99,14 +102,40 @@ namespace VSFlyMVCClient.Controllers
         // -----------------
         public async Task<ActionResult> ConfirmAsync(int id)
         {
+            TempData["flightNo"] = id;
             HttpResponseMessage response = await _httpClient.GetAsync("api/Flights/" + id);
             response.EnsureSuccessStatusCode();
             string message = await response.Content.ReadAsStringAsync();
             Trace.WriteLine(message);
+
+                
+            HttpResponseMessage responseSalePrice = await _httpClient.GetAsync("api/Flights/GetSalePriceForFlight/" + id);
+            responseSalePrice.EnsureSuccessStatusCode();
+            string messageSalePrice = await responseSalePrice.Content.ReadAsStringAsync();
+            ViewBag.salePrice = messageSalePrice;
+            Trace.WriteLine(messageSalePrice);
+            TempData["SalePrice"] = messageSalePrice;
+            //Trace.WriteLine(TempData["PersonID"] + " - " + TempData["FlightNo"] + " - " + TempData["SalePrice"]);
+
             Models.Flight flight = JsonConvert.DeserializeObject<Models.Flight>(message);
-            Trace.WriteLine(flight.FinalPrice);
 
             return View("Confirm", flight);
         }
+
+        public async Task<ActionResult> ContinueAsync()
+        {
+            int PersonId = (int)TempData["PersonID"];
+            int FlightNo = (int)TempData["FlightNo"];
+            double SalePrice = Convert.ToDouble(TempData["SalePrice"]);
+
+            Booking b = new Booking { PassengerID = PersonId, FlightNo = FlightNo, SalePrice = SalePrice};
+            string passengerJson = JsonConvert.SerializeObject(b);
+            HttpContent stringContent = new StringContent(passengerJson, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = await _httpClient.PostAsync("api/Bookings", stringContent);
+            response.EnsureSuccessStatusCode();
+
+            return View();
+        }
+
     }
 }
