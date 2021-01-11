@@ -1,18 +1,18 @@
 ﻿@model VSFlyMVCClient.Models.Statistics.FlightTotalSalePrice
 
 @{
-    ViewData["Title"] = "FlightTotalSalePrice";
+    ViewData["Title"] = "Flight total sale price";
 }
 
 <h1>Flight total sale price</h1>
 
-<form asp-action="FlightTotalSalePrice">
+<form asp-action="FlightTotalSalePrice" class="form-inline">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="FlightNo" class="control-label"></label>
-        <input asp-for="FlightNo" class="form-control" />
+        <input style="margin-left: 0.5em;" asp-for="FlightNo" class="form-control" />
         <span asp-validation-for="FlightNo" class="text-danger"></span>
-        <input type="submit" value="Go!" class="btn btn-primary" />
+        <input style="margin-left: 0.5em;" type="submit" value="Go!" class="btn btn-primary" />
     </div>
 </form>
 
@@ -44,14 +44,15 @@
 }
 else if (Model.FlightNo == 0)
 {
+    <br />
     <div>Please enter a flight number</div>
 }
 else
 {
-    <div>No flight found</div>
+    <br />
+    <div>No flight found 😕</div>
 }
 
-<br />
 <br />
 <div>
     <a asp-action="Index">Back to List</a>

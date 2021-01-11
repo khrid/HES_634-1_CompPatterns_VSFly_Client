@@ -1,24 +1,25 @@
 ﻿@model VSFlyMVCClient.Models.Statistics.DestinationAvgSalePrice
 
 @{
-    ViewData["Title"] = "DestinationAvgSalePrice";
+    ViewData["Title"] = "Destination average sale price";
 }
 
 <h1>Destination average sale price</h1>
 
-<form asp-action="DestinationAvgSalePrice">
+<form asp-action="DestinationAvgSalePrice" class="form-inline">
     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
     <div class="form-group">
         <label asp-for="Destination" class="control-label"></label>
-        <input asp-for="Destination" class="form-control" />
+        <input style="margin-left: 0.5em;" asp-for="Destination" class="form-control" />
         <span asp-validation-for="Destination" class="text-danger"></span>
-        <span><input type="submit" value="Go!" class="btn btn-primary" /></span>
+        <input style="margin-left: 0.5em;" type="submit" value="Go!" class="btn btn-primary" />
     </div>
 </form>
 
 @if (Model.Destination == "notFound")
 {
-    <div>No data with this destination</div>
+    <br />
+    <div>No data with this destination 😕</div>
 }
 else if (!String.IsNullOrEmpty(Model.Destination))
 {
@@ -42,10 +43,10 @@ else if (!String.IsNullOrEmpty(Model.Destination))
 }
 else
 {
+    <br />
     <div>Please enter a destination</div>
 }
 
-<br />
 <br />
 <div>
     <a asp-action="Index">Back to List</a>

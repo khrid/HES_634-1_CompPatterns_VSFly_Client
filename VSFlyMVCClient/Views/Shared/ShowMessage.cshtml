@@ -1,24 +1,14 @@
 ﻿@model VSFlyMVCClient.Models.Message
 
 @{
-    ViewData["Title"] = "ShowMessage";
+    ViewData["Title"] = "Flight added";
 }
 
-<h1>ShowMessage</h1>
+<div>Flight successfully added</div>
+
+<br/>
 
 <div>
-    <h4>Message</h4>
-    <hr />
-    <dl class="row">
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Content)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Content)
-        </dd>
-    </dl>
-</div>
-<div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <!--@Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |-->
     <a asp-action="Index">Back to List</a>
 </div>

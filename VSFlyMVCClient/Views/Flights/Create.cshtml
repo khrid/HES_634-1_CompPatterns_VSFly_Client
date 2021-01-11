@@ -1,12 +1,11 @@
 ﻿@model VSFlyMVCClient.Models.Flight
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "New flight";
 }
 
-<h1>Create</h1>
+<h1>New flight</h1>
 
-<h4>Flight</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -14,27 +13,27 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Departure" class="control-label"></label>
-                <input asp-for="Departure" class="form-control" />
+                <input asp-for="Departure" class="form-control" required />
                 <span asp-validation-for="Departure" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Destination" class="control-label"></label>
-                <input asp-for="Destination" class="form-control" />
+                <input asp-for="Destination" class="form-control" required />
                 <span asp-validation-for="Destination" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Date" class="control-label"></label>
-                <input asp-for="Date" class="form-control" />
+                <input asp-for="Date" class="form-control" required />
                 <span asp-validation-for="Date" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="BasePrice" class="control-label"></label>
-                <input asp-for="BasePrice" class="form-control" />
+                <input asp-for="BasePrice" class="form-control" required />
                 <span asp-validation-for="BasePrice" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Seats" class="control-label"></label>
-                <input asp-for="Seats" class="form-control" />
+                <input asp-for="Seats" class="form-control" required />
                 <span asp-validation-for="Seats" class="text-danger"></span>
             </div>
             <div class="form-group">
