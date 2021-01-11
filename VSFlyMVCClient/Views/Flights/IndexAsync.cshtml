@@ -7,7 +7,7 @@
 <h1>Flights list</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Create new</a>
 </p>
 <table class="table">
     <thead>
@@ -43,8 +43,8 @@
                 @Html.DisplayFor(modelItem => item.Date)
             </td>
             <td>
-                @Html.ActionLink("Book this flight!", "Confirm", "Bookings", new { id=item.FlightNo }) |
-                @Html.ActionLink("Info", "Info", new { id = item.FlightNo })
+                @Html.ActionLink("Book this flight!", "Confirm", "Bookings", new { id = item.FlightNo })
+                <!-- @Html.ActionLink("Info", "Info", new { id = item.FlightNo })-->
                 <!-- @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })-->
             </td>
         </tr>
