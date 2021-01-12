@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -108,6 +109,26 @@ namespace VSFlyMVCClient.Controllers
                 destinationBookings.Destination = String.Empty;
                 return View("DestinationBookings", destinationBookings);
             }
+        }
+
+        public async Task<List<SelectListItem>> DestinationsListAsync()
+        {
+            List<SelectListItem> destinationsList = new List<SelectListItem>();
+            destinationsList.Add(new SelectListItem("Pick one", ""));
+
+            HttpResponseMessage response = await _httpClient.GetAsync("/api/Statistics/Destinations");
+
+            response.EnsureSuccessStatusCode();
+            string message = await response.Content.ReadAsStringAsync();
+
+            List<string> stringList = JsonConvert.DeserializeObject<List<string>>(message);
+
+            foreach (var s in stringList)
+            {
+                destinationsList.Add(new SelectListItem(s, s));
+            }
+
+            return destinationsList;
         }
 
     }
