@@ -9,45 +9,54 @@
 <p>
     <a asp-action="Create">Create new</a>
 </p>
-<table class="table">
-    <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.FlightNo)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Departure)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Destination)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Date)
-            </th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.FlightNo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Departure)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Destination)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Date)
-            </td>
-            <td>
-                @Html.ActionLink("Book this flight!", "Confirm", "Bookings", new { id = item.FlightNo })
-                <!-- @Html.ActionLink("Info", "Info", new { id = item.FlightNo })-->
-                <!-- @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })-->
-            </td>
-        </tr>
+@if (Model.Count() > 0)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.FlightNo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Departure)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Destination)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Date)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FlightNo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Departure)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Destination)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Date)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Book this flight!", "Confirm", "Bookings", new { id = item.FlightNo })
+                        <!-- @Html.ActionLink("Info", "Info", new { id = item.FlightNo })-->
+                        <!-- @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })-->
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-    </tbody>
-</table>
+else
+{
+    <div>No flight found 😕</div>
+}
+
